@@ -18,7 +18,7 @@ list = []
 for i in range(21): 
     list.append(i)
 
-print(list)
+print("2.1: ", list)
 
 '''
 2.2 Working with List Elements 
@@ -37,6 +37,11 @@ def squareList(list):
     for i in range(len(list)): 
         list2.append(list[i] ** 2)
 
+    return list2
+
+listSquared = squareList(list)
+print("2.2: ", listSquared)
+
 '''
 2.3 Slicing 
 Write a function that takes in your new list from Part 2.2 and returns the first 15 elements of the list using slicing. 
@@ -45,8 +50,11 @@ Write a function that takes in your new list from Part 2.2 and returns the first
 [0, 1, 4, ..., 196] 
 '''
 def first_fifteen_elements(list):
-    short = list[0:14]
+    short = list[0:15]
     return short
+
+fifteenList = first_fifteen_elements(listSquared)
+print("2.3: ", fifteenList)
 
 '''
 2.4 Striding 
@@ -56,8 +64,11 @@ Write a function that takes in your list from Part 2.2 and returns every 5th ele
 [16, 81, 196, 361] 
 '''
 def every_fifth_element(list):
-    fifth = list[0:list.length:5]
+    fifth = list[4:len(list):5]
     return fifth
+
+everyFifthList = every_fifth_element(listSquared)
+print("2.4: ", everyFifthList)
 
 '''
 2.5 Slicing & Striding 
@@ -68,7 +79,11 @@ Write a function that takes your list from Part 2.2, slices the last 3 elements 
 '''
 
 def fancy_function(list):  
-    return list[0:list.length - 3:3]
+    return list[0:len(list) - 3:3]
+
+fancyList = fancy_function(listSquared)
+print("2.5: ", fancyList)
+
 
 '''
 3 2D lists 
@@ -80,13 +95,30 @@ Write a function that uses nested for loops to create a 5x5 2D list where the nu
 '''
 def create_2d_list():
     list = []
-    num = 0
-    for i in range(5):
-        for j in range(5): 
-            list[j].append[num]
-            num +=1
+    num = 1
+    inter = []
+    '''
+    for i in range(5):        
+        inter.append(num)
+        num += 1
 
-    num +=1
+    for j in range(len(inter)): 
+        list.append(inter)
+    '''
+    for i in range(5):  
+       for j in range(5):        
+            inter.append(num)
+            num+=1
+        
+       list.append(inter)
+       inter = []      
+       
+
+    return list
+ 
+
+matrix = create_2d_list() 
+print("3.1: ", matrix)
 
 '''
 3.2 Replacing 2D List with Multiples of 3 
@@ -101,10 +133,17 @@ With the 2D list you created in Part 3.1, write a function that will replace all
 '''
 def modified_2d_list(matrix): 
     list = []
-    for i in range(matrix.length):
-        for j in range(matrix[i].length): 
+    for i in range(5):
+        for j in range(5): 
             if matrix[i][j] % 3 == 0: 
                 matrix[i][j] = '?'
+    
+    return matrix
+
+matrix = create_2d_list() 
+
+print("3.2: ", modified_2d_list(matrix))
+
 '''
 3.3 Summing None-’ ?’ Elements 
 Assign the result of your function from Part 3.2 to a variable. Write a function that will iterate through the new 2D list variable and return the sum of all the elements that are not “?”. Hint: Try using “!=”. 
@@ -115,8 +154,14 @@ Assign the result of your function from Part 3.2 to a variable. Write a function
 '''
 def sum_non_question_elements(new_matrix):
     sum = 0
-    for i in range(new_matrix.length):
-        for j in range(new_matrix[i].length): 
-            sum += new_matrix[i][j]
+    for i in range(5):
+        for j in range(5): 
+            if type(new_matrix[i][j]) == int:
+                sum += new_matrix[i][j]
     
     return sum
+
+matrix = create_2d_list() 
+new_matrix = modified_2d_list(matrix) 
+
+print("3.3: ", sum_non_question_elements(new_matrix))
